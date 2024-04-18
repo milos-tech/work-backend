@@ -1,3 +1,8 @@
+import os
+import sys
+current_dir=os.getcwd()
+sys.path.append(current_dir)
+
 from flask import Blueprint, request
 import json
 
@@ -16,7 +21,12 @@ def list_or_create():
         
         print(submitted_data)
         
-        save_game.json.fdumps(game)
+        def save_game(gameId=None, results=None):
+            if gameId is not None:
+                game = get_game_with_id(gameId)
+                return game.toJSON()
+        
+        # save_game.json.fdumps(game)
         # files = request.files.getlist("files"
         
 
